@@ -8,7 +8,7 @@ An autonomous middleware that intercepts x402 payment requests, analyzes intent 
 [![Cronos](https://img.shields.io/badge/Chain-Cronos_EVM-blue)]()
 [![License](https://img.shields.io/badge/License-MIT-yellow)]()
 
----
+--
 
 ## 🎯 Problem & Solution
 
