@@ -5,7 +5,7 @@
 <h1 align="center">x402 Payment Firewall</h1>
 
 <p align="center">
-  <strong>🔒 The Security Layer That Makes AI Agent Payments Safe</strong>
+  <strong>On-Chain Security Layer for Autonomous AI Agent Payments on Cronos</strong>
 </p>
 
 <p align="center">
@@ -15,170 +15,223 @@
   <a href="https://cronos.org/explorer/testnet3/address/0xC3C4E069B294C8ED3841c87d527c942F873CFAA9#code">
     <img src="https://img.shields.io/badge/✅_VERIFIED-Smart_Contracts-00FF88?style=for-the-badge" alt="Verified" />
   </a>
-  <a href="#">
-    <img src="https://img.shields.io/badge/Solidity-0.8.19-363636?style=for-the-badge&logo=solidity" alt="Solidity" />
-  </a>
-</p>
-
-<p align="center">
-  <a href="#-the-problem">Problem</a> •
-  <a href="#-our-solution">Solution</a> •
-  <a href="#-live-demo">Live Demo</a> •
-  <a href="#-quick-start">Quick Start</a> •
-  <a href="#-architecture">Architecture</a>
+  <img src="https://img.shields.io/badge/Solidity-0.8.19-363636?style=for-the-badge&logo=solidity" alt="Solidity" />
 </p>
 
 ---
 
-## 🚨 The Problem
+## 📋 Project Overview
 
-> **"AI agents are getting wallets. What could go wrong?"**
+**x402 Payment Firewall** is a smart contract security layer that protects autonomous AI agent payments on the Cronos blockchain. It enforces spending policies directly on-chain, ensuring that even if an AI agent's private key is compromised, attackers cannot drain funds beyond configured limits.
 
-The x402 protocol enables autonomous AI payments. But **autonomy without security = disaster waiting to happen.**
+### What It Does
 
-<table>
-<tr>
-<td width="50%">
+- **Enforces spending limits** - Max per transaction, daily caps
+- **Blocks unauthorized recipients** - Whitelist/blacklist support  
+- **Prevents rapid draining** - Rate limiting between payments
+- **Provides emergency controls** - Instant pause capability
+- **Creates audit trail** - All attempts logged on-chain
 
-### Without Firewall ❌
+### Key Innovation
 
-```
-Agent Key Compromised
-         ↓
-Attacker has full access
-         ↓
-💸 ENTIRE WALLET DRAINED
-         ↓
-No way to stop it
-         ↓
-Game Over
-```
-
-</td>
-<td width="50%">
-
-### With Firewall ✅
+Unlike off-chain security (which can be bypassed), our firewall is **enforced at the smart contract level**. The blockchain itself prevents unauthorized transfers - no trust assumptions, no external dependencies.
 
 ```
-Agent Key Compromised
-         ↓
-Attacker tries to drain
-         ↓
-🛡️ FIREWALL BLOCKS
-         ↓
-Max 10,000 CRO/day limit
-         ↓
-Damage contained
+Traditional Security:  Agent → Wallet → Blockchain (no protection)
+With Firewall:         Agent → Firewall → Policy Check → Blockchain (protected)
 ```
-
-</td>
-</tr>
-</table>
-
-### Real Threats We Prevent
-
-| Attack Vector | Without Us | With Us |
-|--------------|------------|---------|
-| 🔓 **Key Compromise** | Total loss | Limited to daily cap |
-| 💉 **Prompt Injection** | Unlimited payments | Policy enforced |
-| 🏃 **Rug Pull** | Drain everything | Whitelist-only recipients |
-| 📈 **Overspending** | No limits | Per-TX + daily limits |
 
 ---
 
-## 💡 Our Solution
+## 🌐 Why This Matters for Cronos
 
-<p align="center">
-  <img src="https://img.shields.io/badge/NOT_WARNINGS-WALLS-FF4757?style=for-the-badge" alt="Not Warnings - Walls" />
-</p>
+### The x402 Opportunity
 
-```
-                         ┌─────────────────────────────────────┐
-                         │      x402 PAYMENT FIREWALL          │
-                         │    "The Bouncer for Your Wallet"    │
-                         └─────────────────────────────────────┘
-                                          │
-           ┌──────────────────────────────┼──────────────────────────────┐
-           │                              │                              │
-           ▼                              ▼                              ▼
-      ┌─────────┐                   ┌─────────┐                   ┌─────────┐
-      │ 0.01 CRO│                   │ 100 CRO │                   │15000 CRO│
-      │ Payment │                   │ Payment │                   │ Payment │
-      └────┬────┘                   └────┬────┘                   └────┬────┘
-           │                              │                              │
-           ▼                              ▼                              ▼
-      ┌─────────┐                   ┌─────────┐                   ┌─────────┐
-      │✅ ALLOW │                   │✅ ALLOW │                   │❌ BLOCK │
-      │ Execute │                   │ Execute │                   │ REVERT! │
-      └─────────┘                   └─────────┘                   └─────────┘
-```
+The x402 protocol enables AI agents to make autonomous payments. Cronos is positioning itself as a leader in this space. But **autonomous payments without security = liability**.
 
-### How It Works
+### What We Bring to Cronos
 
-1. **All payments go through the firewall** - No bypass possible
-2. **Policy engine evaluates every transaction** - On-chain, deterministic
-3. **Violations = REVERT** - Transaction fails, funds stay safe
-4. **Full audit trail** - Every attempt logged on-chain
+| Benefit | Impact |
+|---------|--------|
+| **Enables Enterprise Adoption** | Companies won't deploy AI agents with unlimited spending power. Our firewall makes it safe. |
+| **Reduces Risk** | Limits damage from compromised agents, prompt injection attacks, and bugs |
+| **Increases Trust** | Users can authorize AI payments knowing there are guardrails |
+| **Native Integration** | Built specifically for Cronos EVM, optimized for CRO payments |
 
-**The key insight:** Even if an attacker has your private key, they can only operate within your policy limits. The smart contract physically prevents unauthorized transfers.
+### Market Need
+
+- AI agents managing treasury funds need spending limits
+- DAOs automating payments need recipient controls
+- Subscription services need payment caps
+- **All of these need on-chain enforcement that can't be bypassed**
 
 ---
 
-## 🔴 Live Demo
+## 🚀 Deployment Information
 
-### Deployed & Verified on Cronos Testnet
+### Live Contracts on Cronos Testnet
 
-| Contract | Address | Status |
-|----------|---------|--------|
-| **X402PaymentFirewall** | [`0xC3C4E069B294C8ED3841c87d527c942F873CFAA9`](https://cronos.org/explorer/testnet3/address/0xC3C4E069B294C8ED3841c87d527c942F873CFAA9#code) | ✅ Verified |
-| **X402PolicyEngine** | [`0xD0CE6F16969d81997750afE018A34921DeDd04A0`](https://cronos.org/explorer/testnet3/address/0xD0CE6F16969d81997750afE018A34921DeDd04A0#code) | ✅ Verified |
+| Contract | Address | Verified |
+|----------|---------|----------|
+| **X402PaymentFirewall** | `0xC3C4E069B294C8ED3841c87d527c942F873CFAA9` | [✅ View Code](https://cronos.org/explorer/testnet3/address/0xC3C4E069B294C8ED3841c87d527c942F873CFAA9#code) |
+| **X402PolicyEngine** | `0xD0CE6F16969d81997750afE018A34921DeDd04A0` | [✅ View Code](https://cronos.org/explorer/testnet3/address/0xD0CE6F16969d81997750afE018A34921DeDd04A0#code) |
 
-### 🎬 Demo Video
+### Network Details
 
-> *Coming soon - Watch the firewall block a 15,000 CRO payment in real-time!*
+```
+Network:     Cronos Testnet
+Chain ID:    338
+RPC URL:     https://evm-t3.cronos.org
+Explorer:    https://cronos.org/explorer/testnet3
+Currency:    tCRO (test CRO)
+```
 
-### Proof It Works
-
-| Test | Amount | Expected | Result | Evidence |
-|------|--------|----------|--------|----------|
-| Normal payment | 0.01 CRO | ✅ Allow | ✅ Executed | [View TX](https://cronos.org/explorer/testnet3/tx/0x26f363226771f9e359b6ed74c67eef0d2314bd21e458dcbfde3583e7b460fbae) |
-| Over limit | 15,000 CRO | ❌ Block | ❌ Reverted | Policy enforced |
-| Blacklisted recipient | Any | ❌ Block | ❌ Reverted | Policy enforced |
-
----
-
-## 🚀 Quick Start
-
-### Try the Live Frontend
+### Deploy Your Own
 
 ```bash
-# Clone the repo
+# 1. Clone the repository
 git clone https://github.com/Venkat5599/x402-Intent-Firewall.git
 cd x402-Intent-Firewall
 
-# Install & run frontend
-cd frontend
+# 2. Install dependencies
 npm install
-npm run dev
 
-# Open http://localhost:5173
-# Connect MetaMask → Cronos Testnet
-# Try sending 15,000 CRO → Watch it get BLOCKED! 🛡️
+# 3. Configure environment
+cp .env.example .env
+# Edit .env with your private key
+
+# 4. Deploy to Cronos Testnet
+npx hardhat run scripts/deploy-firewall.ts --network cronosTestnet
+
+# 5. Verify contracts (optional)
+npx hardhat run scripts/verify-contracts.ts --network cronosTestnet
 ```
 
-### Get Test CRO
-1. Visit [Cronos Faucet](https://cronos.org/faucet)
-2. Enter your wallet address
-3. Receive free tCRO
+---
 
-### Integrate in Your Project (2 Lines!)
+## 📖 How to Use the Contracts
+
+### Option 1: Direct Contract Interaction
+
+#### Execute a Protected Payment
+
+```solidity
+// Solidity - Call from your contract
+interface IX402Firewall {
+    function executePayment(address recipient) external payable;
+}
+
+IX402Firewall firewall = IX402Firewall(0xC3C4E069B294C8ED3841c87d527c942F873CFAA9);
+firewall.executePayment{value: 100 ether}(recipientAddress);
+// If policy violated → transaction REVERTS
+// If policy passes → payment executes
+```
+
+#### Check If Payment Would Succeed
+
+```solidity
+// Simulate before executing
+(bool allowed, string memory reason) = firewall.simulatePayment(
+    senderAddress,
+    recipientAddress,
+    amount
+);
+// allowed = true/false
+// reason = "Payment allowed" or "Exceeds max payment limit"
+```
+
+### Option 2: JavaScript/TypeScript Integration
 
 ```typescript
-import { X402Firewall } from './sdk';
+import { ethers } from 'ethers';
 
-// That's it - all payments now go through the firewall
-const firewall = new X402Firewall(signer);
-await firewall.pay(recipient, '100'); // Policy enforced automatically
+// Connect to firewall
+const FIREWALL_ADDRESS = '0xC3C4E069B294C8ED3841c87d527c942F873CFAA9';
+const FIREWALL_ABI = [
+  'function executePayment(address recipient) payable',
+  'function simulatePayment(address sender, address recipient, uint256 amount) view returns (bool allowed, string reason)',
+];
+
+const provider = new ethers.BrowserProvider(window.ethereum);
+const signer = await provider.getSigner();
+const firewall = new ethers.Contract(FIREWALL_ADDRESS, FIREWALL_ABI, signer);
+
+// Simulate first
+const [allowed, reason] = await firewall.simulatePayment(
+  await signer.getAddress(),
+  '0xRecipientAddress',
+  ethers.parseEther('100')
+);
+console.log(allowed ? 'Will succeed' : `Will fail: ${reason}`);
+
+// Execute payment (100 CRO)
+const tx = await firewall.executePayment(
+  '0xRecipientAddress',
+  { value: ethers.parseEther('100') }
+);
+await tx.wait();
+console.log('Payment executed:', tx.hash);
+```
+
+### Option 3: Intent-Based Flow (Advanced)
+
+For higher security, use the intent registration flow:
+
+```typescript
+// 1. Register intent (announces payment before execution)
+const tx1 = await firewall.registerIntent(
+  recipientAddress,
+  ethers.parseEther('100'),
+  3600 // Valid for 1 hour
+);
+const receipt = await tx1.wait();
+const intentHash = receipt.logs[0].args[0]; // Get from IntentRegistered event
+
+// 2. Approve intent (done by authorized agent/backend)
+await firewall.approveIntent(intentHash, 15, 'Low risk payment');
+
+// 3. Execute approved intent
+await firewall.executeIntent(intentHash, { value: ethers.parseEther('100') });
+```
+
+### Contract Functions Reference
+
+| Function | Description | Access |
+|----------|-------------|--------|
+| `executePayment(recipient)` | Execute payment with policy check | Anyone |
+| `simulatePayment(sender, recipient, amount)` | Check if payment would succeed | View |
+| `registerIntent(recipient, amount, validFor)` | Register payment intent | Anyone |
+| `approveIntent(hash, riskScore, reason)` | Approve registered intent | Agent only |
+| `rejectIntent(hash, riskScore, reason)` | Reject registered intent | Agent only |
+| `executeIntent(hash)` | Execute approved intent | Intent sender |
+| `pause()` / `unpause()` | Emergency controls | Owner only |
+
+---
+
+## 🛡️ Security Policies
+
+All policies are enforced on-chain. Violations cause transaction revert.
+
+| Policy | Default Value | Configurable |
+|--------|---------------|--------------|
+| Max per transaction | 10,000 CRO | ✅ Yes |
+| Daily spending limit | 50,000 CRO | ✅ Yes |
+| Sender blacklist | Empty | ✅ Yes |
+| Recipient blacklist | Empty | ✅ Yes |
+| Rate limit (seconds between tx) | 0 (disabled) | ✅ Yes |
+| Emergency pause | Off | ✅ Yes |
+
+### Policy Violation Examples
+
+```
+Attempt: Send 15,000 CRO (limit is 10,000)
+Result:  REVERT("X402Firewall: Exceeds max payment limit")
+
+Attempt: Send to blacklisted address
+Result:  REVERT("X402Firewall: Recipient blacklisted")
+
+Attempt: Exceed daily limit
+Result:  REVERT("X402Firewall: Daily limit exceeded")
 ```
 
 ---
@@ -187,197 +240,176 @@ await firewall.pay(recipient, '100'); // Policy enforced automatically
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                              FRONTEND                                    │
-│         React + TypeScript + Vite + TailwindCSS + ethers.js             │
-│                                                                          │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐    │
-│  │   Wallet    │  │   Policy    │  │  Payment    │  │   Audit     │    │
-│  │  Connect    │  │  Display    │  │   Form      │  │    Logs     │    │
-│  └─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘    │
+│                              USER/AGENT                                  │
+│                    (AI Agent, DApp, or Direct Call)                     │
 └─────────────────────────────────────────────────────────────────────────┘
                                     │
                                     ▼
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                           SMART CONTRACTS                                │
-│                         Cronos Testnet (338)                            │
+│                        X402PaymentFirewall                               │
+│                   0xC3C4E069B294C8ED3841c87d527c942F873CFAA9            │
 │                                                                          │
-│  ┌──────────────────────────┐      ┌──────────────────────────┐        │
-│  │   X402PaymentFirewall    │─────►│    X402PolicyEngine      │        │
-│  │                          │      │                          │        │
-│  │  • executePayment()      │      │  • evaluate()            │        │
-│  │  • registerIntent()      │      │  • Max per TX: 10K CRO   │        │
-│  │  • approveIntent()       │      │  • Daily limit: 50K CRO  │        │
-│  │  • Emergency pause       │      │  • Sender blacklist      │        │
-│  │  • Rate limiting         │      │  • Recipient whitelist   │        │
-│  └──────────────────────────┘      └──────────────────────────┘        │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐         │
+│  │ Intent Registry │  │ Direct Payments │  │ Emergency Pause │         │
+│  │ register/approve│  │ executePayment()│  │ pause/unpause() │         │
+│  └────────┬────────┘  └────────┬────────┘  └─────────────────┘         │
+│           │                    │                                         │
+│           └────────────────────┴──────────────────┐                     │
+│                                                   ▼                     │
+│                                    ┌─────────────────────────┐          │
+│                                    │    Policy Check         │          │
+│                                    │    (MUST PASS)          │          │
+│                                    └───────────┬─────────────┘          │
+└────────────────────────────────────────────────┼────────────────────────┘
+                                                 │
+                                                 ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                         X402PolicyEngine                                 │
+│                   0xD0CE6F16969d81997750afE018A34921DeDd04A0            │
 │                                                                          │
-│  Events: IntentRegistered, PaymentExecuted, PaymentBlocked              │
+│  evaluate(sender, recipient, amount) → (bool allowed, string reason)    │
+│                                                                          │
+│  Checks:                                                                 │
+│  ├── Amount ≤ maxPaymentLimit?                                          │
+│  ├── Daily spent + amount ≤ dailyLimit?                                 │
+│  ├── Sender not blocked?                                                │
+│  ├── Recipient not blacklisted?                                         │
+│  └── (If whitelist enabled) Recipient whitelisted?                      │
 └─────────────────────────────────────────────────────────────────────────┘
+                                    │
+                    ┌───────────────┴───────────────┐
+                    │                               │
+                    ▼                               ▼
+            ┌─────────────┐                 ┌─────────────┐
+            │  ✅ ALLOWED  │                 │  ❌ BLOCKED  │
+            │   Transfer   │                 │   REVERT    │
+            │   Executes   │                 │   No funds  │
+            └─────────────┘                 │   move      │
+                                            └─────────────┘
 ```
-
----
-
-## 🛡️ Security Policies
-
-All policies are **enforced on-chain**. No off-chain components. No trust assumptions.
-
-| Policy | Default | What Happens on Violation |
-|--------|---------|---------------------------|
-| **Max Per Transaction** | 10,000 CRO | `REVERT("Exceeds max payment")` |
-| **Daily Spending Limit** | 50,000 CRO | `REVERT("Daily limit exceeded")` |
-| **Sender Blacklist** | Configurable | `REVERT("Sender blocked")` |
-| **Recipient Blacklist** | Configurable | `REVERT("Recipient blacklisted")` |
-| **Rate Limiting** | Configurable | `REVERT("Rate limited")` |
-| **Emergency Pause** | Owner only | `REVERT("Firewall paused")` |
 
 ---
 
 ## 📁 Project Structure
 
 ```
-x402-firewall/
-├── 📜 contracts/                    # Solidity smart contracts
-│   ├── X402PaymentFirewall.sol      # Main firewall contract
-│   ├── X402PolicyEngine.sol         # Policy evaluation logic
-│   ├── X402IntentRegistry.sol       # Intent registration
-│   └── X402ExecutionRouter.sol      # Execution gate
+x402-Intent-Firewall/
 │
-├── 🎨 frontend/                     # React dashboard
-│   └── src/
-│       ├── App.tsx                  # Main application
-│       ├── hooks/useContracts.ts    # Contract interactions
-│       └── hooks/useWallet.ts       # MetaMask integration
+├── contracts/                      # Solidity smart contracts
+│   ├── X402PaymentFirewall.sol     # Main firewall (1 contract does it all)
+│   ├── X402PolicyEngine.sol        # Policy evaluation logic
+│   ├── X402IntentRegistry.sol      # Intent registration (standalone)
+│   └── X402ExecutionRouter.sol     # Execution router (standalone)
 │
-├── 📦 sdk/                          # TypeScript SDK
-│   └── index.ts                     # Drop-in integration
+├── frontend/                       # React dashboard
+│   ├── src/
+│   │   ├── App.tsx                 # Main UI component
+│   │   ├── hooks/useContracts.ts   # Contract interaction hooks
+│   │   └── hooks/useWallet.ts      # MetaMask integration
+│   └── package.json
 │
-├── 🔧 scripts/                      # Deployment & testing
-│   ├── deploy-firewall.ts           # Deploy to Cronos
-│   └── demo-full-flow.ts            # Full demo script
+├── sdk/                            # TypeScript SDK for easy integration
+│   └── index.ts                    # X402Firewall class
 │
-└── 📚 docs/                         # Documentation
-    ├── ARCHITECTURE.md              # Technical deep-dive
-    └── X402_INTEGRATION.md          # Integration guide
+├── scripts/                        # Deployment and testing
+│   ├── deploy-firewall.ts          # Deploy to Cronos
+│   ├── verify-contracts.ts         # Verify on explorer
+│   └── demo-full-flow.ts           # Full demo script
+│
+├── docs/                           # Documentation
+│   ├── ARCHITECTURE.md             # Technical deep-dive
+│   └── X402_INTEGRATION.md         # Integration guide
+│
+├── hardhat.config.ts               # Hardhat configuration
+└── package.json
 ```
 
 ---
 
-## 🎯 Use Cases
+## 🖥️ Run the Frontend Demo
 
-### 1. 🤖 AI Agent Treasury Protection
-```
-Scenario: AI agent manages 100,000 CRO treasury
-Policy:   Max 1,000 CRO/tx, 10,000 CRO/day
-Result:   Even if agent is compromised, max loss = 10,000 CRO/day
-          (vs. 100,000 CRO without firewall)
-```
+```bash
+# 1. Clone and install
+git clone https://github.com/Venkat5599/x402-Intent-Firewall.git
+cd x402-Intent-Firewall/frontend
+npm install
 
-### 2. 🏛️ DAO Automated Payments
-```
-Scenario: DAO pays contractors automatically
-Policy:   Whitelist-only recipients
-Result:   Funds can ONLY go to approved addresses
-          Unauthorized addresses = REVERT
-```
+# 2. Start development server
+npm run dev
 
-### 3. 💳 Subscription Services
-```
-Scenario: User authorizes recurring payments
-Policy:   Max 100 CRO, specific recipient only
-Result:   Service cannot overcharge or redirect funds
+# 3. Open http://localhost:5173
+
+# 4. Connect MetaMask to Cronos Testnet
+#    - Network: Cronos Testnet
+#    - RPC: https://evm-t3.cronos.org
+#    - Chain ID: 338
+
+# 5. Get test CRO from https://cronos.org/faucet
+
+# 6. Try sending 15,000 CRO → Watch it get BLOCKED!
 ```
 
 ---
 
-## 🏆 Why This Wins
+## 🧪 Testing
 
-<table>
-<tr>
-<td>
+```bash
+# Run the full demo flow
+npx hardhat run scripts/demo-full-flow.ts --network cronosTestnet
 
-### Technical Excellence
-- ✅ **Deployed on Cronos** - Live, working contracts
-- ✅ **Verified source code** - Transparent, auditable
-- ✅ **Gas optimized** - Efficient on-chain checks
-- ✅ **No external dependencies** - Pure Solidity
-
-</td>
-<td>
-
-### Real-World Impact
-- ✅ **Solves real problem** - Agent security is unsolved
-- ✅ **x402 native** - Built for the protocol
-- ✅ **Production ready** - Emergency pause, rate limits
-- ✅ **Developer friendly** - 2-line SDK integration
-
-</td>
-</tr>
-</table>
+# Expected output:
+# ✅ Direct payment (0.001 CRO) - Executed
+# ✅ Intent registration - Success
+# ✅ Intent approval - Success  
+# ✅ Intent execution - Success
+# ❌ Unapproved intent - Reverted (expected)
+# ❌ Rejected intent - Reverted (expected)
+```
 
 ---
 
-## 📈 Roadmap
+## 🔗 Links
 
-- [x] ✅ Core contracts deployed & verified
-- [x] ✅ Policy enforcement working
-- [x] ✅ Frontend dashboard
-- [x] ✅ TypeScript SDK
-- [x] ✅ Documentation
-- [ ] 🎬 Demo video
-- [ ] 🔐 Security audit
-- [ ] 🌐 Mainnet deployment
-- [ ] 📦 npm package publish
-- [ ] ⛓️ Multi-chain support
-
----
-
-## 🔗 Links & Resources
-
-| Resource | Link |
-|----------|------|
-| 📜 **Firewall Contract** | [View Verified Code](https://cronos.org/explorer/testnet3/address/0xC3C4E069B294C8ED3841c87d527c942F873CFAA9#code) |
-| 📜 **PolicyEngine Contract** | [View Verified Code](https://cronos.org/explorer/testnet3/address/0xD0CE6F16969d81997750afE018A34921DeDd04A0#code) |
-| 📝 **Architecture Docs** | [ARCHITECTURE.md](./docs/ARCHITECTURE.md) |
-| 📝 **Integration Guide** | [X402_INTEGRATION.md](./docs/X402_INTEGRATION.md) |
-| 🧪 **Demo Transaction** | [View on Explorer](https://cronos.org/explorer/testnet3/tx/0x26f363226771f9e359b6ed74c67eef0d2314bd21e458dcbfde3583e7b460fbae) |
+| Resource | URL |
+|----------|-----|
+| **Firewall Contract** | [View on Explorer](https://cronos.org/explorer/testnet3/address/0xC3C4E069B294C8ED3841c87d527c942F873CFAA9#code) |
+| **PolicyEngine Contract** | [View on Explorer](https://cronos.org/explorer/testnet3/address/0xD0CE6F16969d81997750afE018A34921DeDd04A0#code) |
+| **Example Transaction** | [View TX](https://cronos.org/explorer/testnet3/tx/0x26f363226771f9e359b6ed74c67eef0d2314bd21e458dcbfde3583e7b460fbae) |
+| **Cronos Faucet** | [Get Test CRO](https://cronos.org/faucet) |
+| **Architecture Docs** | [ARCHITECTURE.md](./docs/ARCHITECTURE.md) |
 
 ---
 
 ## 🛠️ Tech Stack
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Solidity-363636?style=for-the-badge&logo=solidity&logoColor=white" />
-  <img src="https://img.shields.io/badge/Hardhat-FFF100?style=for-the-badge&logo=hardhat&logoColor=black" />
-  <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
-  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
-  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" />
-  <img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" />
-  <img src="https://img.shields.io/badge/ethers.js-2535A0?style=for-the-badge&logo=ethereum&logoColor=white" />
-</p>
+- **Smart Contracts:** Solidity 0.8.19
+- **Development:** Hardhat, TypeScript
+- **Frontend:** React, Vite, TailwindCSS
+- **Blockchain:** Cronos EVM (Testnet)
+- **Wallet:** MetaMask, ethers.js v6
+
+---
+
+## 📈 Roadmap
+
+- [x] Core contracts deployed & verified
+- [x] Policy enforcement working
+- [x] Frontend dashboard
+- [x] TypeScript SDK
+- [x] Documentation
+- [ ] Security audit
+- [ ] Mainnet deployment
+- [ ] npm package publish
+- [ ] Multi-token support (ERC20)
 
 ---
 
 <div align="center">
 
-## 🏆 Built for Cronos x402 Hackathon 2025
+## Built for Cronos x402 Hackathon 2025
 
-<br />
+**Protecting AI Agent Payments on Cronos**
 
-**Real Security. Real Enforcement. Real Protection.**
-
-<br />
-
-<img src="https://img.shields.io/badge/NOT_WARNINGS-WALLS-FF4757?style=for-the-badge" alt="Not Warnings - Walls" />
-
-<br /><br />
-
-*When AI agents control money, you need more than warnings.*  
-*You need walls.*
-
-<br />
-
----
-
-<sub>Made with 💙 for the Cronos ecosystem</sub>
+*Because autonomous doesn't mean unprotected.*
 
 </div>
